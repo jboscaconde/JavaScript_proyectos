@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca - Gestión de Libros</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos adicionales personalizados si los necesitas */
+        .scroll-libros {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-8">
+            Sistema de <span class="text-blue-600">Gestión de Libros</span>
+        </h1>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Formulario -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4">Agregar/Editar Libro</h2>
+                
+                <form id="formulario-libro" class="space-y-4">
+                    <div>
+                        <label for="titulo" class="block text-sm font-medium text-gray-700">Título*</label>
+                        <input type="text" id="titulo" name="titulo" required
+                               class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label for="autor" class="block text-sm font-medium text-gray-700">Autor*</label>
+                        <input type="text" id="autor" name="autor" required
+                               class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label for="genero" class="block text-sm font-medium text-gray-700">Género*</label>
+                        <select id="genero" name="genero" required
+                                class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500">
+                            <option value="">Seleccione un género</option>
+                            <option value="Novela">Novela</option>
+                            <option value="Ciencia Ficción">Ciencia Ficción</option>
+                            <option value="Fantasía">Fantasía</option>
+                            <option value="Histórico">Histórico</option>
+                            <option value="Biografía">Biografía</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="anio" class="block text-sm font-medium text-gray-700">Año de publicación*</label>
+                        <input type="number" id="anio" name="anio" min="1900" max="2023" required
+                               class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <input type="checkbox" id="disponible" name="disponible" 
+                               class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                        <label for="disponible" class="ml-2 block text-sm text-gray-700">
+                            Disponible para préstamo
+                        </label>
+                    </div>
+                    
+                    <div id="notificacion" class="hidden"></div>
+                    
+                    <div class="flex space-x-4">
+                        <button type="submit" id="btn-submit" 
+                                class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            Agregar Libro
+                        </button>
+                        <button type="button" id="btn-cancelar" class="hidden flex-1 bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Listado de libros -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-semibold">Catálogo de Libros</h2>
+                    <div class="relative">
+                        <input type="text" id="buscar-libro" placeholder="Buscar libro..." 
+                               class="border border-gray-300 rounded-md py-1 px-3 text-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                </div>
+                
+                <div id="listado-libros" class="scroll-libros space-y-4">
+                    <p class="text-center text-gray-500 py-8">No hay libros registrados</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
